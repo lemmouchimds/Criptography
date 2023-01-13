@@ -29,11 +29,23 @@ namespace Criptography_Project
             Console.WriteLine("Give the text you want to {0}", answer);
             var textToCode = Console.ReadLine();
             string textAfteCode = "";
+            var code = new CisearCipher(13);
+
 
             switch (Method_number)
             {
                 case 1:
-                textAfteCode = caesar_cipher.CodeOrDecode(textToCode, sign, 13);
+                    if (sign == 1)
+                    {
+                        textAfteCode = code.Code(textToCode);
+
+                    }
+                    else
+                    {
+                        textAfteCode = code.Decode(textToCode);
+
+                    }
+                //textAfteCode = caesar_cipher.CodeOrDecode(textToCode, sign, 13);
                     break;
                 case 2:
                 case 3:
@@ -45,9 +57,9 @@ namespace Criptography_Project
         }
         static int GetMethode_Console()
         {
-            var Method_number = new int();
-            var IsConverted = new bool();
             string Method;
+            int Method_number;
+            bool IsConverted;
             do
             {
                 Console.WriteLine("Choose a methode (write the number) : " +

@@ -45,7 +45,6 @@ namespace Criptography_Project
 
         private char codeChar(char c)
         {
-            c = char.ToLower(c);
 
             if (char.IsLetter(c))
             {
@@ -53,6 +52,7 @@ namespace Criptography_Project
                 c = StayInAlphabetCoding(c);
 
             }
+            c = char.ToLower(c);
 
             return c;
         }
@@ -88,12 +88,12 @@ namespace Criptography_Project
 
         private char decodeChar(char c)
         {
-            c = char.ToLower(c);
 
             if (char.IsLetter(c))
             {
                 c= (char)(c - number);
                 c = StayInAlphabetDecoding(c);
+                c = char.ToLower(c);
             }
 
             return c;
@@ -101,12 +101,12 @@ namespace Criptography_Project
 
         private char StayInAlphabetDecoding(char c)
         {
-            c = char.ToLower(c);
 
             if (c < 'a')
             {
                 c = (char)(c + NumberOfAlphabet);
             }
+            c = char.ToLower(c);
             return c;
         }
 
