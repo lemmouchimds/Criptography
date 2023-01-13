@@ -50,7 +50,7 @@ namespace Criptography_Project
             if (char.IsLetter(c))
             {
                 c = (char)(c + number);
-                c = StayInAlphabet(c);
+                c = StayInAlphabetCoding(c);
 
             }
 
@@ -62,7 +62,7 @@ namespace Criptography_Project
         /// </summary>
         /// <param name="c">Character should be lowercase</param>
         /// <returns></returns>
-        private static char StayInAlphabet(char c)
+        private static char StayInAlphabetCoding(char c)
         {
 
             if (c > 'z')
@@ -86,9 +86,42 @@ namespace Criptography_Project
             return result.ToString();
         }
 
+        private char decodeChar(char c)
+        {
+            c = char.ToLower(c);
+
+            if (char.IsLetter(c))
+            {
+                c= (char)(c - number);
+                c = StayInAlphabetDecoding(c);
+            }
+
+            return c;
+        }
+
+        private char StayInAlphabetDecoding(char c)
+        {
+            c = char.ToLower(c);
+
+            if (c < 'a')
+            {
+                c = (char)(c + NumberOfAlphabet);
+            }
+            return c;
+        }
+
         public string Decode(string text)
         {
-            return text;
+            var result = new StringBuilder();
+            foreach (var item in text)
+            {
+                var code = decodeChar(item);
+                result.Append(code);
+            }
+
+
+            return result.ToString();
+            
         }
 
 
@@ -147,10 +180,10 @@ namespace Criptography_Project
         {
             if (WasUpper)
             {
-                return ((int)c > (int)'Z') ? (int)c - NumberOfAlphabet : (int)c;
+                return (c > (int)'Z') ? c - NumberOfAlphabet : c;
             }
 
-            return ((int)c > (int)'z') ? (int)c - NumberOfAlphabet : (int)c;
+            return (c > (int)'z') ? c - NumberOfAlphabet : c;
         }
     }
 }
