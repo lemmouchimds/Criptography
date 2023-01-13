@@ -1,4 +1,7 @@
-﻿using System.Text;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Xml.Schema;
 
 namespace Criptography_Project
 {
@@ -6,6 +9,29 @@ namespace Criptography_Project
     {
 
         private readonly int number;
+
+        public char[] CipherCode
+        {
+            get
+            { 
+                var charA = 'a';
+                var result = new char[NumberOfAlphabet];
+                
+                for (int i = 0; i < NumberOfAlphabet; i++)
+                {
+                    var code = (charA + number);
+                    if (code > 'z')
+                    {
+                        code -= NumberOfAlphabet;
+                    }
+
+                    result[i] = (char)code;
+                }
+
+                return result;
+
+            } 
+        } 
 
         public CisearCipher()
         {
@@ -17,9 +43,47 @@ namespace Criptography_Project
             this.number = number;
         }
 
+        private char codeChar(char c)
+        {
+            c = char.ToLower(c);
+
+            if (char.IsLetter(c))
+            {
+                c = (char)(c + number);
+                c = StayInAlphabet(c);
+
+            }
+
+            return c;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="c">Character should be lowercase</param>
+        /// <returns></returns>
+        private static char StayInAlphabet(char c)
+        {
+
+            if (c > 'z')
+            {
+                c = (char)(c - NumberOfAlphabet);
+            }
+
+            return c;
+        }
+
         public string Code(string text)
         {
-            return text;
+            var result = new StringBuilder();
+            foreach (var item in text)
+            {
+                var code = codeChar(item);
+                result.Append(code);
+            }
+
+
+            return result.ToString();
         }
 
         public string Decode(string text)
