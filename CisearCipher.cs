@@ -15,14 +15,14 @@ namespace Criptography_Project
             get
             { 
                 var charA = 'a';
-                var result = new char[NumberOfAlphabet];
+                var result = new char[Definitions.NumberOfAlphabet];
                 
-                for (int i = 0; i < NumberOfAlphabet; i++)
+                for (int i = 0; i < Definitions.NumberOfAlphabet; i++)
                 {
                     var code = (charA + number);
                     if (code > 'z')
                     {
-                        code -= NumberOfAlphabet;
+                        code -= Definitions.NumberOfAlphabet;
                     }
 
                     result[i] = (char)code;
@@ -67,7 +67,7 @@ namespace Criptography_Project
 
             if (c > 'z')
             {
-                c = (char)(c - NumberOfAlphabet);
+                c = (char)(c - Definitions.NumberOfAlphabet);
             }
 
             return c;
@@ -104,7 +104,7 @@ namespace Criptography_Project
 
             if (c < 'a')
             {
-                c = (char)(c + NumberOfAlphabet);
+                c = (char)(c + Definitions.NumberOfAlphabet);
             }
             c = char.ToLower(c);
             return c;
@@ -126,7 +126,7 @@ namespace Criptography_Project
 
 
 
-        const int NumberOfAlphabet = 26;
+        
         /// <summary>
         /// This is a coding decoding function
         /// </summary>
@@ -139,7 +139,7 @@ namespace Criptography_Project
         public static string CodeOrDecode(string Source, sbyte Sign = 1, byte NumberOfMouvment = 1)
         {
 
-            NumberOfMouvment %= NumberOfAlphabet;
+            NumberOfMouvment %= Definitions.NumberOfAlphabet;
             if (Sign < 0)
             {
                 Sign = -1;
@@ -150,14 +150,12 @@ namespace Criptography_Project
             }
 
             StringBuilder CodedStr = new StringBuilder();
-            char CodedChar = new char();
-
             foreach (char c in Source)
             {
                 if (char.IsLetter(c))
                 {
                     int i = (int)c;
-                    CodedChar = (char)(i + (NumberOfMouvment * Sign));
+                    char CodedChar = (char)(i + (NumberOfMouvment * Sign));
                     CodedChar = (char)StayInAlphabet(CodedChar, char.IsUpper(c));
                     CodedStr.Append(CodedChar);
                 }
@@ -180,10 +178,10 @@ namespace Criptography_Project
         {
             if (WasUpper)
             {
-                return (c > (int)'Z') ? c - NumberOfAlphabet : c;
+                return (c > (int)'Z') ? c - Definitions.NumberOfAlphabet : c;
             }
 
-            return (c > (int)'z') ? c - NumberOfAlphabet : c;
+            return (c > (int)'z') ? c - Definitions.NumberOfAlphabet : c;
         }
     }
 }

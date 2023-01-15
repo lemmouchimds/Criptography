@@ -10,7 +10,17 @@ namespace Criptography_Project
     {
         static void Main(string[] args)
         {
-            ChooseAMethode.ConsoleUI();
+            //ChooseAMethode.ConsoleUI();
+
+            var text = Console.ReadLine();
+            var decode = new DecodeWithoutKey();
+
+            Console.WriteLine("this is your decoded text : ");
+            text = decode.decode(text);
+            Console.WriteLine(text);
+
+
+
         }
     }
     
@@ -29,7 +39,7 @@ namespace Criptography_Project
             Console.WriteLine("Give the text you want to {0}", answer);
             var textToCode = Console.ReadLine();
             string textAfteCode = "";
-            var code = new CisearCipher(13);
+            var code = new CisearCipher(1);
 
 
             switch (Method_number)
