@@ -14,39 +14,40 @@ namespace Criptography_Project
 
         char[] HighestEnglishLettersFrequency()
         {
-            var result = new char[Definitions.NumberOfAlphabet];
-            result[0] = 'e';
-            result[1] = 't';
-            result[2] = 'a';
-            result[3] = 'o';
-            result[4] = 'i';
-            result[5] = 'n';
-            result[6] = 's';
-            result[7] = 'h';
-            result[8] = 'r';
-            result[9] = 'd';
-            result[10] = 'l';
-            result[11] = 'c';
-            result[12] = 'u';
-            result[13] = 'm';
-            result[14] = 'w';
-            result[15] = 'f';
-            result[16] = 'g';
-            result[17] = 'y';
-            result[18] = 'p';
-            result[19] = 'b';
-            result[20] = 'v';
-            result[21] = 'k';
-            result[22] = 'j';
-            result[23] = 'x';
-            result[24] = 'q';
-            result[25] = 'z';
+            var result = "eationsrhldcumfpgwybvkxjzq";
+
+            //result[0] = 'e';
+            //result[1] = 'a';
+            //result[2] = 't';
+            //result[3] = 'i';
+            //result[4] = 'o';
+            //result[5] = 'n';
+            //result[6] = 's';
+            //result[7] = 'r';
+            //result[8] = 'h';
+            //result[9] = 'l';
+            //result[10] = 'd';
+            //result[11] = 'c';
+            //result[12] = 'u';
+            //result[13] = 'm';
+            //result[14] = 'f';
+            //result[15] = 'p';
+            //result[16] = 'g';
+            //result[17] = 'w';
+            //result[18] = 'y';
+            //result[19] = 'b';
+            //result[20] = 'v';
+            //result[21] = 'k';
+            //result[22] = 'x';
+            //result[23] = 'j';
+            //result[24] = 'z';
+            //result[25] = 'q';
             
 
 
 
 
-            return result;
+            return result.ToCharArray();
         }
 
         int getLetterOrder(char letter)
@@ -148,6 +149,22 @@ namespace Criptography_Project
             return 'a'; //todo: change this
         }
 
+        Dictionary<char, char> insertNotExistingLetter(Dictionary<char, char> dict, char toInsert)
+        {
+            char key = 'a';
+
+            for (char c = 'a'; c < Definitions.NumberOfAlphabet; c++)
+            {
+                if (!dict.ContainsKey(c))
+                {
+                    key = c;
+                    break;
+                }
+            }
+
+            dict.Add(toInsert, key);
+            return dict;
+        }
 
         Dictionary<char, char> linkFrequencyWithLetters(float[] frequencies)
         {
@@ -161,6 +178,10 @@ namespace Criptography_Project
                 var toInsert = getCharAt(index);
 
                 result = insertIfDoesntExist(result, toInsert, temp[i]);
+                if (!result.ContainsKey(toInsert))
+                {
+                    result = insertNotExistingLetter(result, toInsert);
+                }
                 frequencies[index] = 0;
 
             }

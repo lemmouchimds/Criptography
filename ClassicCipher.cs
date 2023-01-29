@@ -38,7 +38,7 @@ namespace Criptography_Project
 
         public string Decode(string codedText)
         {
-            
+            return codedText;
         }
     }
 }

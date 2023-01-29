@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CisearCipher.cs" />
+    <Compile Include="ClassicCipher.cs" />
     <Compile Include="DecodeWithoutKey.cs" />
     <Compile Include="Definitions.cs" />
     <Compile Include="ICryptoCode.cs" />

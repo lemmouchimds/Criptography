@@ -12,18 +12,25 @@ namespace Criptography_Project
         {
             //ChooseAMethode.ConsoleUI();
 
+            test();
+
+
+
+        }
+
+        public static void test()
+        {
             var text = Console.ReadLine();
             var decode = new DecodeWithoutKey();
 
             Console.WriteLine("this is your decoded text : ");
             text = decode.decode(text);
             Console.WriteLine(text);
-
-
-
         }
     }
     
+    
+
     public static class ChooseAMethode
     {
         public static void ConsoleUI()
